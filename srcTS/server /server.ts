@@ -1,17 +1,21 @@
 import * as express from 'express';
-import { Router } from '../config /router';
+import  Router  from '../config /router';
 import Middleware from '../config /middleware';
 
 
-export default class Server {
-    private readonly _server: express.Application = express();
+class Server {
+    private app: express.Application;
 
     constructor() {
-        Middleware.init(this._server);
-        Router.init(this._server);
-        this._server.set('port', 3000);
+        const app = express();
+        Middleware.init(app);
+        Router.init(app);
+        app.set('port', 3000);
+        this.app = app;
     }
-    get server(): express.Application {
-        return this._server;
+    public get(): express.Application {
+        return this.app;
     }
 }
+
+export default new Server().get();

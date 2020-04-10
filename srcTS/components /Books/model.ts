@@ -35,10 +35,10 @@ class BooksSchema {
             collection: 'books',
             versionKey: false,
         },
-    )
+    );
 }
-    public _model(): Model<IModel> {
+    get(): Model<IModel> {
         return Connection.model<IModel>('BooksModel', this._schema())
     }
 }
-export default new BooksSchema()._model();
+export default new BooksSchema().get();

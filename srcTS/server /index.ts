@@ -3,11 +3,10 @@ import Server from "./server";
 import Events from "./events";
 
 class App {
-    private server: any = new Server().server;
-    private readonly _port: number = new this.server.get('port');
+    private readonly _port: number = Server.get('port');
 
-    start(): void{
-       new Events().bind(http.createServer(this.server).listen(this._port), this._port);
+    public start(): void{
+        Events.bind(http.createServer(Server).listen(this._port), this._port);
     }
 }
 new App().start();

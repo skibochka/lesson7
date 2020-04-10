@@ -13,7 +13,7 @@ class Config  {
         useUnifiedTopology: true,
     };
     connection(): mongoose.Connection {
-        return module.exports = mongoose.createConnection(this.MONGO_URI, this.connectOptions);
+        return mongoose.createConnection(this.MONGO_URI, this.connectOptions);
     }
 }
 export default new Config().connection();

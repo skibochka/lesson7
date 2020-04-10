@@ -5,10 +5,8 @@ import * as cors from 'cors';
 import * as helmet from 'helmet';
 import * as express from 'express';
 
-
 export default class Middleware {
-    static init(app: express.Application) {
-        app.use(express.static('public'));
+    static init(app: express.Application): void {
         app.use(
             bodyParser.urlencoded({
                 extended: true,

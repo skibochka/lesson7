@@ -2,7 +2,7 @@ import * as express from 'express';
 import * as http from 'http';
 import  bookRouter from '../components /Books/router';
 
-export class Router {
+export default class Router {
     static init(app: express.Application): void {
         const router = express.Router();
 

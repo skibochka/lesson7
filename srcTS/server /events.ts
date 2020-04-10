@@ -1,14 +1,13 @@
 import * as http from 'http';
 import {AddressInfo} from "net";
 
-export default class Events {
-    private _addr: string | AddressInfo;
+class Events {
     onError(error: NodeJS.ErrnoException, port: number | string):never {
         if (error.syscall !== 'listen') {
             throw error;
         }
 
-        const bindPort = typeof port === 'string' ? `Pipe ${port}` : `Port ${port}`;
+        const bindPort: string = typeof port === 'string' ? `Pipe ${port}` : `Port ${port}`;
 
         switch (error.code) {
             case 'EACCES':
@@ -22,16 +21,15 @@ export default class Events {
         }
     }
 
-     onListening(port: number): void {
-        const addr: string | AddressInfo = this._addr;
-        const bindPort = typeof addr === 'string' ? `pipe ${addr}` : `port ${addr.port}`;
-
-        console.log(`Listening on ${bindPort}`);
+     onListening(address): void {
+        // const bindPort: string = typeof address === 'string' ? `pipe ${address}` : `port ${address.port}`;
+        console.log(`Listening on `);
     }
 
-    bind(Server, port): void {
-        this._addr = Server.address;
+    bind(Server: http.Server, port: number): void {
         Server.on('error', (error) => this.onError(error, port));
         Server.on('listening', this.onListening.bind(Server));
     }
 }
+
+export default new Events();

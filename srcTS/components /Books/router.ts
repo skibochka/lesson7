@@ -1,7 +1,5 @@
 import { Router as ERouter } from 'express';
-import * as path from 'path';
 import books from './index'
-
 
 class Router{
     /**
@@ -9,9 +7,10 @@ class Router{
  * @type {Express.Router}
  * @const
  */
-    private readonly _router: ERouter = ERouter();
+    private readonly router: ERouter = ERouter();
 
-    run(): void{
+    constructor(){
+        const router = ERouter();
         /**
          * Route serving list of books.
          * @name /v1/books
@@ -20,7 +19,7 @@ class Router{
          * @param {string} path - Express path
          * @param {callback} middleware - Express middleware.
          */
-        this._router.get('/', books.chart);
+        router.get('/', books.chart);
 
         /**
          * Route serving list of books.
@@ -30,13 +29,12 @@ class Router{
          * @param {string} path - Express path
          * @param {callback} middleware - Express middleware.
          */
-        this._router.get('/chart', (req, res) => {
-            res.sendFile(path.resolve('public/index.html'));
-        });
+        router.get('/chart', books.page)
+        this.router = router;
     }
 
     get(): ERouter{
-        return this._router;
+        return this.router;
     }
 }
 export default new Router().get();
