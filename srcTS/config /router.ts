@@ -4,7 +4,7 @@ import  bookRouter from '../components /Books/router';
 
 export default class Router {
     static init(app: express.Application): void {
-        const router = express.Router();
+        const router: express.Router = express.Router();
 
         /**
          * Forwards any requests to the /v1/books URI to BooksRouter.

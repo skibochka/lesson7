@@ -1,5 +1,4 @@
 import * as http from 'http';
-import {AddressInfo} from "net";
 
 class Events {
     onError(error: NodeJS.ErrnoException, port: number | string):never {

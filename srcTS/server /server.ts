@@ -7,7 +7,7 @@ class Server {
     private app: express.Application;
 
     constructor() {
-        const app = express();
+        const app: express.Application = express();
         Middleware.init(app);
         Router.init(app);
         app.set('port', 3000);

@@ -11,7 +11,7 @@ class books {
             const map: Map<string, number> = new Map();
 
             books.forEach((el) => {
-                const key = el.code3;
+                const key: string = el.code3;
                 if (map[key] != null) map[key] += 1;
                 else map[key] = 1;
             });
